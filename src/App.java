@@ -3,7 +3,6 @@ import java.util.Random;
 
 public class App {
 
-    Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args)  {
         System.out.println("Aqui iría la presentacion del programa");
@@ -11,7 +10,8 @@ public class App {
     }
 
     public static void CalculadoraHumana(){
-         
+
+        Scanner sc = new Scanner(System.in);
 
         Random random = new Random();
 
@@ -69,5 +69,7 @@ public class App {
 
         System.out.println("Penalizacion:" + penalizacion + " segundos ");
         System.out.println("Tiempo total" + tiempo + " segundos");
+
+        sc.close();
     }
 }
