@@ -14,6 +14,7 @@ public class App {
     // variables la letra
     static String vocalAleatoria;
     static String consonanteAleatoria;
+    static String letras;
 
     public static void main(String[] args) throws Exception {
 
@@ -24,6 +25,7 @@ public class App {
         System.out.println("¡¡¡Empezamos!!!");
         pedirNombres();
         laCifraExacta();
+        laPalabraMasLarga();
 
     }
 
@@ -179,6 +181,146 @@ public class App {
         System.out.println("Números disponibles: " + numeroAleatorio1 + " - " + numeroAleatorio2 + " - "
                 + numeroAleatorio3 + " - " + numeroAleatorio4 + " - " + numeroAleatorio5 + " - "
                 + numeroAleatorio6);
+    }
+
+
+    public static void laPalabraMasLarga() {
+        letras = generarLetras();
+
+        System.out.println("Letras sorteadas: " + letras);
+        System.out.println("¿Quieres repetir el sorteo? [s/n]");
+
+        String respuesta = teclado.nextLine().trim().toLowerCase();
+
+        while (!respuesta.equals("s") && !respuesta.equals("n")) {
+            System.out.println("Responde solo s o n:");
+            respuesta = teclado.nextLine().trim().toLowerCase();
+        }
+
+        if (respuesta.equals("s")) {
+            letras = generarLetras();
+            System.out.println("Nuevo sorteo: " + letras);
+        }
+
+        String palabra1 = pedirPalabra(1);
+        boolean existe1 = confirmarExistencia(palabra1, 2);
+
+        String palabra2 = pedirPalabra(2);
+        boolean existe2 = confirmarExistencia(palabra2, 1);
+        int longitud1 = 0;
+        if (existe1) {
+            longitud1 = palabra1.length();
+        }
+        int longitud2 = 0;
+        if (existe2) {
+            longitud2 = palabra2.length();
+        }
+
+        System.out.println();
+        System.out.println("===== RESULTADOS =====");
+        System.out.println("Letras: " + letras);
+        System.out.println(nombreJugador1 + ": " + palabra1 + " (" + longitud1 + " letras)");
+        System.out.println(nombreJugador2 + ": " + palabra2 + " (" + longitud2 + " letras)");
+
+        int ganador = decidirGanadorLetras(longitud1, longitud2);
+        if (ganador == 0) {
+            System.out.println("¡Empate!");
+
+        } else {
+            System.out.println("¡Gana " + obtenerNombre(ganador) + "!");
+        }
+    }
+
+    static String pedirPalabra(int jugador) {
+        System.out.println();
+        System.out.println("Turno de " + obtenerNombre(jugador));
+        System.out.println("Letras disponibles: " + letras);
+        System.out.println("Escribe tu palabra:");
+        String palabra = teclado.nextLine().trim().toLowerCase();
+
+        while (palabra.length() == 0 || !sePuedeFormar(palabra, letras)) {
+            System.out.println("Esa palabra no se puede formar con las letras. Prueba otra:");
+            palabra = teclado.nextLine().trim().toLowerCase();
+        }
+        return palabra;
+    }
+
+    static boolean confirmarExistencia(String palabra, int jugadorRival) {
+        System.out.println(obtenerNombre(jugadorRival) + ", comprueba en un diccionario si existe \""
+                + palabra + "\".");
+        System.out.println("¿Existe? [s/n]:");
+        String respuesta = teclado.nextLine().trim().toLowerCase();
+
+        while (!respuesta.equals("s") && !respuesta.equals("n")) {
+            System.out.println("Responde solo s o n:");
+            respuesta = teclado.nextLine().trim().toLowerCase();
+        }
+        return respuesta.equals("s");
+
+    }
+
+    static int decidirGanadorLetras(int longitud1, int longitud2) {
+        if (longitud1 > longitud2) {
+            return 1;
+        } else if (longitud2 > longitud1) {
+            return 2;
+        } else {
+            return 0;
+        }
+    }
+
+    static boolean sePuedeFormar(String palabra, String letrasDisponibles) {
+        for (int i = 0; i < palabra.length(); i++) {
+            char letra = palabra.charAt(i);
+            if (contarLetra(palabra, letra) > contarLetra(letrasDisponibles, letra)) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    static int contarLetra(String texto, char letra) {
+        int contador = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            if (texto.charAt(i) == letra) {
+                contador = contador + 1;
+            }
+        }
+        return contador;
+    }
+
+    static String generarLetras() {
+        String resultado = "";
+
+        for (int i = 0; i < 4; i++) {
+            resultado = resultado + vocalAleatoria();
+        }
+
+        for (int i = 0; i < 4; i++) {
+            resultado = resultado + consonanteAleatoria();
+        }
+
+        for (int i = 0; i < 2; i++) {
+            if (generador.nextInt(4) < 3) {
+                resultado = resultado + vocalAleatoria();
+            } else {
+                resultado = resultado + consonanteAleatoria();
+            }
+        }
+
+        return resultado;
+
+    }
+
+    static char vocalAleatoria() {
+        String vocales = "aeiou";
+        return vocales.charAt(generador.nextInt(5));
+    }
+
+    static char consonanteAleatoria() {
+        String consonantes = "bcdfghjklmnpqrstvwxyz";
+        return consonantes.charAt(generador.nextInt(21));
     }
 
 }
