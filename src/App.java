@@ -3,14 +3,28 @@ import java.util.Random;
 
 public class App {
 
+    // ==========================================
+    // 1. VARIABLES GLOBALES Y CONSTANTES
+    // ==========================================
+
+    // Scanner y Random
     static Scanner teclado = new Scanner(System.in);
     static Random random = new Random();
+
+    // Colores : se escriben delante del texto. RESET lo devuelve al original
+    static final String RESET = "\u001B[0m";
+    static final String CIAN = "\u001B[36m";
+    static final String AMARILLO = "\u001B[33m";
+    static final String VERDE = "\u001B[32m";
+    static final String ROJO = "\u001B[31m";
+    static final String AZUL = "\u001B[34m";
+    static final String MAGENTA = "\u001B[35m";
 
     // Nombres de los jugadores
     static String nombreJugador1;
     static String nombreJugador2;
 
-    // Marcador global (concurso) y marcador de la prueba en curso
+    // Marcadores
     static int puntosGlobales1 = 0;
     static int puntosGlobales2 = 0;
     static int puntosPrueba1;
@@ -29,15 +43,19 @@ public class App {
     // Variable de La palabra más larga
     static String letras;
 
-    //------PROGRAMA PRINCIPAL------
+    // ==========================================
+    // 2. PROGRAMA PRINCIPAL
+    // ==========================================
 
     public static void main(String[] args) {
 
-        System.out.println("¡BIENVENIDO AL CONCURSO CIFRAS Y LETRAS!");
+        System.out.println(MAGENTA + "¡BIENVENIDO AL CONCURSO CIFRAS Y LETRAS!" + RESET);
         System.out.println(
                 "En este programa los participantes deben demostrar su habilidad con las operaciones matemáticas y el lenguaje.");
-        System.out.println("Este programa dispone de dos tipos de juegos: el modo concurso y un modo rápido");
-        System.out.println("¡¡¡Empezamos!!!");
+        System.out.println(
+                "Este programa dispone de dos tipos de juegos: el modo concurso y un modo rápido");
+        System.out.println(
+                "¡¡¡Empezamos!!!");
         pedirNombres();
 
         System.out.println("\n¿Qué modalidad quieres jugar?");
@@ -54,8 +72,9 @@ public class App {
         }
     }
 
-    //------MODOS DE JUEGO------
-
+    // ==========================================
+    // 2. MODOS DE JUEGO
+    // ==========================================
     public static void modoConcurso() {
         System.out.println("\n===== HAS ELEGIDO EL MODO CONCURSO =====");
         System.out.println("Jugaréis a las cuatro pruebas correlativamente");
@@ -114,7 +133,9 @@ public class App {
         System.out.println();
     }
 
-    // ------MARCADOR------
+    // ==========================================
+    // 4. MARCADOR
+    // ==========================================
 
     public static void actualizarMarcador(int ganador) {
         if (ganador == 1) {
@@ -139,7 +160,30 @@ public class App {
         }
     }
 
-    // ------ NOMBRES ------
+    // ==========================================
+    // 5. INTERFAZ
+    // ==========================================
+    public static void linea(String simbolo, int veces) {
+        for (int i = 0; i < veces; i++) {
+            System.out.print(simbolo);
+        }
+    }
+
+    public static void titulo(String texto, String color) {
+        System.out.println();
+        System.out.print(color + "+");
+        linea("-", 38);
+        System.out.println("+");
+        System.out.println("| " + String.format("%-36s", texto) + " |");
+        System.out.print("+");
+        linea("-", 38);
+        System.out.println("+" + RESET);
+
+    }
+
+    // ==========================================
+    // 6. GESTIÓN DE JUGADORES
+    // ==========================================
 
     public static void pedirNombres() {
         System.out.println("Jugador 1, ¿cómo te llamas?");
@@ -163,15 +207,20 @@ public class App {
         } else {
             return nombreJugador2;
         }
+
     }
 
-    // ------PRUEBA 1: LA CIFRA EXACTA------
+    // ==========================================
+    // 7.1 PRUEBA 1 : LA CIFRA EXACTA
+    // ==========================================
 
     public static int laCifraExacta() {
 
-        System.out.println("\n===== LA CIFRA EXACTA =====");
-        System.out.println("En el primer juego, el programa generará un número de tres cifras y seis números auxiliares");
-        System.out.println("Tendréis que acercaros lo máximo posible al número objetivo mediante operaciones aritméticas");
+        titulo("LA CIFRA EXACTA", CIAN);
+        System.out
+                .println("En el primer juego, el programa generará un número de tres cifras y seis números auxiliares");
+        System.out.println(
+                "Tendréis que acercaros lo máximo posible al número objetivo mediante operaciones aritméticas");
         System.out.println("Tendréis 5 oportunidades por jugador");
         System.out.println("El ganador será el que haya conseguido el resultado más cercano");
         System.out.println("Si ambos obtenéis la misma diferencia, se producirá un empate");
@@ -274,9 +323,11 @@ public class App {
             }
 
             mostrarNumeros();
-            System.out.println("Acabó tu turno");
-            System.out.println("Tu número conseguido ha sido: " + numeroElegido1);
+            System.out.println("Tu número actual es: " + resultado);
+
         }
+        System.out.println("Acabó tu turno");
+        System.out.println("Tu número conseguido ha sido: " + numeroElegido1);
 
         return resultado;
     }
@@ -304,16 +355,18 @@ public class App {
                 + numeroAleatorio6);
     }
 
-    // LÓGICA: false si es una división entre 0 o no exacta; true en cualquier otro
-    // caso
+    // false si es una división entre 0 o no exacta; true en cualquier otro caso
     static boolean esOperacionValida(int a, int b, int operacion) {
         if (operacion == 4) {
             return b != 0 && a % b == 0;
         }
         return true;
+
     }
 
-    // ------ PRUEBA 2: LA PALABRA MÁS LARGA ------
+    // ==========================================
+    // 8.1 LA PALABRA MÁS LARGA
+    // ==========================================
 
     public static int laPalabraMasLarga() {
 
@@ -388,7 +441,7 @@ public class App {
         return respuesta.equals("s");
     }
 
-    //gana la palabra más larga. Devuelve 1, 2 o 0 si empatan
+    // gana la palabra más larga. Devuelve 1, 2 o 0 si empatan
     static int decidirGanadorLetras(int longitud1, int longitud2) {
         if (longitud1 > longitud2) {
             return 1;
@@ -399,7 +452,8 @@ public class App {
         }
     }
 
-    //true si la palabra se puede formar respetando cuántas veces aparece cada letra
+    // true si la palabra se puede formar respetando cuántas veces aparece cada
+    // letra
     static boolean sePuedeFormar(String palabra, String letrasDisponibles) {
         for (int i = 0; i < palabra.length(); i++) {
             char letra = palabra.charAt(i);
@@ -411,7 +465,7 @@ public class App {
         return true;
     }
 
-    //cuenta cuántas veces aparece una letra en un texto
+    // cuenta cuántas veces aparece una letra en un texto
     static int contarLetra(String texto, char letra) {
         int contador = 0;
         for (int i = 0; i < texto.length(); i++) {
@@ -422,7 +476,7 @@ public class App {
         return contador;
     }
 
-    //4 vocales + 4 consonantes garantizadas, y 2 letras extra
+    // 4 vocales + 4 consonantes garantizadas, y 2 letras extra
     static String generarLetras() {
         String resultado = "";
 
@@ -457,40 +511,9 @@ public class App {
         return consonantes.charAt(random.nextInt(21));
     }
 
-    // ------LECTURA DE DATOS------
-
-    // Pide un número entero y repite hasta que se escriba uno válido
-    static int leerNumero(String mensaje) {
-
-        int numero;
-
-        while (true) {
-            System.out.print(mensaje);
-
-            if (teclado.hasNextInt()) {
-                numero = teclado.nextInt();
-                teclado.nextLine(); // limpia el salto de línea pendiente
-                return numero;
-            } else {
-
-                System.out.println("Debes introducir un numero.");
-                teclado.nextLine();
-            }
-        }
-    }
-
-    // Pide un número entero entre un mínimo y un máximo
-    static int leerNumeroEntre(String mensaje, int minimo, int maximo) {
-        int numero = leerNumero(mensaje);
-        while (numero < minimo || numero > maximo) {
-            System.out.println("El número debe estar entre " + minimo + " y " + maximo + ".");
-            numero = leerNumero(mensaje);
-        }
-        return numero;
-    }
-
-    // ------ PRUEBA 3: LA CALCULADORA HUMANA------
-    
+    // ==========================================
+    // 9.3 PRUEBA 3: LA CALCULADORA HUMANA
+    // ==========================================
 
     static int calculadoraHumana(int cantidad) {
 
@@ -586,7 +609,9 @@ public class App {
         return tiempoFinal;
     }
 
-    // ------PRUEBA 4: LA SECUENCIA MISTERIOSA------
+    // ==========================================
+    // 10.3. PRUEBA 4: LA SECUENCIA MISTERIOSA
+    // ==========================================
 
     static int secuenciaMisteriosa() {
 
@@ -674,6 +699,40 @@ public class App {
         } else {
             return 0;
         }
+    }
+
+    // ==================================================
+    // 11. MÉTODOS AUXILIARES: LECTURA DE DATOS
+    // ==================================================
+
+    // Pide un número entero y repite hasta que se escriba uno válido
+    static int leerNumero(String mensaje) {
+
+        int numero;
+
+        while (true) {
+            System.out.print(mensaje);
+
+            if (teclado.hasNextInt()) {
+                numero = teclado.nextInt();
+                teclado.nextLine(); // limpia el salto de línea pendiente
+                return numero;
+            } else {
+
+                System.out.println("Debes introducir un numero.");
+                teclado.nextLine();
+        }
+    }
+}
+
+    // Pide un número entero entre un mínimo y un máximo
+    static int leerNumeroEntre(String mensaje, int minimo, int maximo) {
+        int numero = leerNumero(mensaje);
+        while (numero < minimo || numero > maximo) {
+            System.out.println("El número debe estar entre " + minimo + " y " + maximo + ".");
+            numero = leerNumero(mensaje);
+        }
+        return numero;
     }
 
 }
