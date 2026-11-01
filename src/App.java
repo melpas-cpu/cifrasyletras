@@ -49,18 +49,21 @@ public class App {
 
     public static void main(String[] args) {
 
-        System.out.println(MAGENTA + "¡BIENVENIDO AL CONCURSO CIFRAS Y LETRAS!" + RESET);
-        System.out.println(
-                "En este programa los participantes deben demostrar su habilidad con las operaciones matemáticas y el lenguaje.");
-        System.out.println(
-                "Este programa dispone de dos tipos de juegos: el modo concurso y un modo rápido");
-        System.out.println(
-                "¡¡¡Empezamos!!!");
+        System.out.println();
+
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(CIAN + "                                                  " + RESET);
+        System.out.println(CIAN + "                 BIENVENIDOS A" + RESET);
+        System.out.println(CIAN + "                CIFRAS Y LETRAS" + RESET);
+        System.out.println(CIAN + "               EL GRAN CONCURSO" + RESET);
+        System.out.println(CIAN + "                                                  " + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
         pedirNombres();
 
         System.out.println(MAGENTA + "\n ¿Qué modalidad quieres jugar?" + RESET);
-        System.out.println("1. Modo concurso");
-        System.out.println("2. Modo rápido");
+        System.out.println(MAGENTA + " 1. Modo concurso" + RESET);
+        System.out.println(MAGENTA + " 2. Modo rápido" + RESET);
 
         int opcion = leerNumeroEntre("Elige [1-2]: ", 1, 2);
 
@@ -76,9 +79,13 @@ public class App {
     // 3. MODOS DE JUEGO
     // ==========================================
     public static void modoConcurso() {
-        System.out.println("\n===== HAS ELEGIDO EL MODO CONCURSO =====");
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(MAGENTA + "        HAS ELEGIDO EL MODO CONCURSO" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
         System.out.println("Jugaréis a las cuatro pruebas correlativamente");
-        System.out.println("¡Adelante!");
+        System.out.println(MAGENTA + "¡Adelante!" + RESET);
 
         // Se juegan las cuatro pruebas en orden y cada ganador suma 1 punto global
         for (int prueba = 1; prueba <= 4; prueba++) {
@@ -89,14 +96,19 @@ public class App {
     }
 
     public static void jugarModoRapido() {
-        System.out.println("\n===== MODO RÁPIDO =====");
-        System.out.println("¿Qué prueba quieres jugar?");
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(MAGENTA + "                  MODO RÁPIDO" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
+        System.out.println(MAGENTA + "¿Qué prueba quieres jugar?" + RESET);
         System.out.println("1. La cifra exacta");
         System.out.println("2. La palabra más larga");
         System.out.println("3. La calculadora humana");
         System.out.println("4. La secuencia misteriosa");
 
         int prueba = leerNumeroEntre("Elige [1-4]: ", 1, 4);
+
         ejecutarPrueba(prueba);
     }
 
@@ -125,39 +137,67 @@ public class App {
 
     public static void anunciarGanador(int ganador) {
         System.out.println();
-        if (ganador == 0) {
-            System.out.println(">>> La prueba termina en EMPATE <<<");
-        } else {
-            System.out.println(">>> ¡Gana la prueba " + obtenerNombre(ganador) + "! <<<");
-        }
         System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(MAGENTA + "            RESULTADO DE LA PRUEBA" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
+        if (ganador == 0) {
+            System.out.println(MAGENTA + "¡La prueba termina en EMPATE!" + RESET);
+        } else {
+            System.out.println(VERDE + "¡Gana la prueba " + obtenerNombre(ganador) + "!" + RESET);
+
+        }
     }
 
     // ==========================================
     // 4. MARCADOR
     // ==========================================
-
     public static void actualizarMarcador(int ganador) {
+
         if (ganador == 1) {
             puntosGlobales1++;
         } else if (ganador == 2) {
             puntosGlobales2++;
         }
+
     }
 
     public static void mostrarMarcadorFinal() {
-        System.out.println("\n===== MARCADOR FINAL =====");
-        System.out.println(nombreJugador1 + ": " + puntosGlobales1 + " puntos");
-        System.out.println(nombreJugador2 + ": " + puntosGlobales2 + " puntos");
+
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(CIAN + "                  MARCADOR FINAL" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
+        System.out.println();
+        System.out.println(AMARILLO + "  " + nombreJugador1 + RESET);
+        System.out.println(AMARILLO + "  Puntos: " + puntosGlobales1 + RESET);
+
+        System.out.println();
+        System.out.println(VERDE + "  " + nombreJugador2 + RESET);
+        System.out.println(VERDE + "  Puntos: " + puntosGlobales2 + RESET);
+
+        System.out.println();
+        System.out.println(CIAN + "--------------------------------------------------" + RESET);
 
         if (puntosGlobales1 > puntosGlobales2) {
-            System.out.println("¡Ha ganado " + nombreJugador1 + "!");
+
+            System.out.println(AMARILLO + "       ¡HA GANADO " + nombreJugador1 + "!" + RESET);
 
         } else if (puntosGlobales2 > puntosGlobales1) {
-            System.out.println("¡Ha ganado " + nombreJugador2 + "!");
+
+            System.out.println(VERDE + "       ¡HA GANADO " + nombreJugador2 + "!" + RESET);
+
         } else {
-            System.out.println("¡El concurso ha terminado en empate!");
+
+            System.out.println(MAGENTA + "       ¡EL CONCURSO HA TERMINADO EN EMPATE!" + RESET);
+
         }
+
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println();
+
     }
 
     // ==========================================
@@ -169,81 +209,111 @@ public class App {
         }
     }
 
-    public static void titulo(String texto, String color) {
+    public static void titulo(String texto, int numeroJuego) {
 
-    int ancho = 48;
+        int ancho = 48;
 
-    System.out.println();
+        System.out.println();
 
-    // Línea superior
-    System.out.println(color + "=".repeat(ancho) + RESET);
+        // Línea superior
+        System.out.println(CIAN + "=".repeat(ancho) + RESET);
 
-    // Nombre del concurso
-    System.out.printf(color + "%" + ((ancho + 15) / 2)
-            + "s%n" + RESET, "CIFRAS Y LETRAS");
+        // Nombre del concurso
+        System.out.printf(CIAN + "%" + ((ancho + 15) / 2)
+                + "s%n" + RESET, "CIFRAS Y LETRAS");
 
-    // Separador
-    System.out.println(color + "-".repeat(ancho) + RESET);
+        // Separador
+        System.out.println(CIAN + "-".repeat(ancho) + RESET);
 
-    System.out.println();
+        System.out.println();
 
-    // Nombre de la prueba
-    System.out.printf(color + "%" + ((ancho + texto.length()) / 2)
-            + "s%n" + RESET, texto);
+        // Nombre de la prueba
+        System.out.printf(CIAN + "%" + ((ancho + texto.length()) / 2)
+                + "s%n" + RESET, texto);
 
-    System.out.println();
+        System.out.println();
 
-    // Línea inferior
-    System.out.println(color + "=".repeat(ancho) + RESET);
+        // Línea inferior
+        System.out.println(CIAN + "=".repeat(ancho) + RESET);
 
-    System.out.println();
-}
-
+        System.out.println();
+    }
 
     // ==========================================
     // 6. GESTIÓN DE JUGADORES
     // ==========================================
 
     public static void pedirNombres() {
-        System.out.println("Jugador 1, ¿cómo te llamas?");
+
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(MAGENTA + "             PRESENTACIÓN DE CONCURSANTES" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println();
+
+        System.out.print(AMARILLO + "  JUGADOR 1: " + RESET);
         nombreJugador1 = teclado.nextLine().trim();
+
         while (nombreJugador1.length() == 0) {
-            System.out.println("El nombre no puede estar vacío. Inténtalo de nuevo:");
+            System.out.print(ROJO + "  El nombre no puede estar vacío. Inténtalo de nuevo: " + RESET);
             nombreJugador1 = teclado.nextLine().trim();
         }
 
-        System.out.println("Jugador 2, ¿cómo te llamas?");
+        System.out.println();
+
+        System.out.print(VERDE + "  JUGADOR 2: " + RESET);
         nombreJugador2 = teclado.nextLine().trim();
+
         while (nombreJugador2.length() == 0) {
-            System.out.println("El nombre no puede estar vacío. Inténtalo de nuevo:");
+            System.out.print(ROJO + "  El nombre no puede estar vacío. Inténtalo de nuevo: " + RESET);
             nombreJugador2 = teclado.nextLine().trim();
         }
+
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println();
     }
 
+    // MÉTODO PARA MOSTRAR EL NOMBRE CON SU COLOR
     public static String obtenerNombre(int jugador) {
+
         if (jugador == 1) {
-            return AMARILLO +  nombreJugador1 + RESET;
+            return AMARILLO + nombreJugador1 + RESET;
         } else {
-            return VERDE + nombreJugador2 + RESET;
+            return MAGENTA + nombreJugador2 + RESET;
         }
 
     }
 
     // ==========================================
-    // 7. PRUEBA 1 : LA CIFRA EXACTA
+    // 7. PRUEBA 1: LA CIFRA EXACTA
     // ==========================================
 
     public static int laCifraExacta() {
 
-        titulo("LA CIFRA EXACTA", CIAN);
-        System.out
-                .println("En el primer juego, el programa generará un número de tres cifras y seis números auxiliares");
-        System.out.println(
-                "Tendréis que acercaros lo máximo posible al número objetivo mediante operaciones aritméticas.");
-        System.out.println("Tendréis 5 oportunidades por jugador.");
-        System.out.println("El ganador será el que haya conseguido el resultado más cercano.");
-        System.out.println("Si ambos obtenéis la misma diferencia, se producirá un empate.");
-        System.out.println("Es tu turno, jugador número 1. ¡Mucha suerte!");
+        titulo("LA CIFRA EXACTA", 1);
+
+        System.out.println();
+        System.out.println("  El objetivo es alcanzar el número de tres cifras");
+        System.out.println("  utilizando los seis números auxiliares.");
+        System.out.println();
+        System.out.println("  Podréis realizar operaciones aritméticas para");
+        System.out.println("  conseguir el resultado más cercano posible.");
+        System.out.println();
+
+        System.out.println(MAGENTA + "  ¡Disponéis de 5 oportunidades cada uno!" + RESET);
+
+        System.out.println();
+        System.out.println("  Ganará quien consiga la menor diferencia");
+        System.out.println("  respecto al número objetivo.");
+        System.out.println();
+
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println();
+
+        System.out.println(AMARILLO + "       ¡ES TU TURNO, " + nombreJugador1 + "!" + RESET);
+        System.out.println(MAGENTA + "             ¡MUCHA SUERTE!" + RESET);
+        System.out.println();
 
         numeroObjetivo = random.nextInt(900) + 100;
 
@@ -260,125 +330,232 @@ public class App {
         int diferenciaJugador1 = Math.abs(numeroObjetivo - resultadoJugador1);
         int diferenciaJugador2 = Math.abs(numeroObjetivo - resultadoJugador2);
 
-        System.out.println("\nNúmero objetivo: " + numeroObjetivo);
-        System.out.println(nombreJugador1 + ": " + resultadoJugador1 + " (diferencia " + diferenciaJugador1 + ")");
-        System.out.println(nombreJugador2 + ": " + resultadoJugador2 + " (diferencia " + diferenciaJugador2 + ")");
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(MAGENTA + "                 RESULTADO FINAL" + RESET);
+        System.out.println(CIAN + "==================================================" + RESET);
+
+        System.out.println(AMARILLO + nombreJugador1 + RESET + ": "
+                + resultadoJugador1 + " (diferencia " + diferenciaJugador1 + ")");
+
+        System.out.println(VERDE + nombreJugador2 + RESET + ": "
+                + resultadoJugador2 + " (diferencia " + diferenciaJugador2 + ")");
+
+        System.out.println();
+        System.out.println("Número objetivo: " + numeroObjetivo);
 
         return decidirGanadorCifra(diferenciaJugador1, diferenciaJugador2);
     }
 
-    // LÓGICA: gana la menor diferencia. Devuelve 1, 2 o 0 si empatan
+    // * LÓGICA: gana la menor diferencia. Devuelve 1, 2 o 0 si empatan *
+
     public static int decidirGanadorCifra(int diferencia1, int diferencia2) {
+
         if (diferencia1 < diferencia2) {
 
             return 1;
+
         } else if (diferencia2 < diferencia1) {
+
             return 2;
+
         } else {
+
             return 0;
+
         }
     }
 
     public static int jugarTurno(int jugador) {
 
-        System.out.println("\nTurno de " + obtenerNombre(jugador));
+        String colorJugador;
+
+        if (jugador == 1) {
+            colorJugador = AMARILLO;
+        } else {
+            colorJugador = VERDE;
+        }
+
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println(CIAN + "                 TURNO DE " + RESET + obtenerNombre(jugador));
+        System.out.println(CIAN + "==================================================" + RESET);
+
         mostrarNumeros();
 
         int resultado = 0;
 
-        int numeroElegido1 = pedirNumeroDisponible("Elige el primer número que quieres seleccionar: ");
+        int numeroElegido1 = pedirNumeroDisponible(
+                "Elige el primer número que quieres seleccionar: ");
 
         for (int i = 0; i < 5; i++) {
 
-            int numeroElegido2 = pedirNumeroDisponible("Elige el segundo número que quieres seleccionar: ");
+            System.out.println();
+            System.out.println(CIAN + "--------------------------------------------------" + RESET);
+            System.out.println(colorJugador + "                  INTENTO " + (i + 1) + " DE 5" + RESET);
+            System.out.println(CIAN + "--------------------------------------------------" + RESET);
+
+            System.out.println("Tu número actual es: " + numeroElegido1);
+
+            int numeroElegido2 = pedirNumeroDisponible(
+                    "Elige el siguiente número que quieres utilizar: ");
 
             boolean interruptor;
+            String simboloOperacion = "";
+            String nombreOperacion = "";
 
             do {
+
                 interruptor = true;
-                System.out.println("¿Qué operación quieres hacer?");
+
+                System.out.println();
+                System.out.println(CIAN + "¿QUÉ OPERACIÓN QUIERES HACER?" + RESET);
                 System.out.println("[1] Sumar");
                 System.out.println("[2] Restar");
                 System.out.println("[3] Multiplicar");
                 System.out.println("[4] Dividir");
-                int opcion = leerNumero("Seleccionar la opción [1-4]: ");
+
+                int opcion = leerNumero("Selecciona una opción [1-4]: ");
 
                 switch (opcion) {
                     case 1:
-                        System.out.println("Has elegido sumar...");
+                        simboloOperacion = "+";
+                        nombreOperacion = "sumar";
                         resultado = numeroElegido1 + numeroElegido2;
                         break;
+
                     case 2:
-                        System.out.println("Has elegido restar");
+                        simboloOperacion = "-";
+                        nombreOperacion = "restar";
                         resultado = numeroElegido1 - numeroElegido2;
                         break;
+
                     case 3:
-                        System.out.println("Has elegido multiplicar");
+                        simboloOperacion = "*";
+                        nombreOperacion = "multiplicar";
                         resultado = numeroElegido1 * numeroElegido2;
                         break;
+
                     case 4:
-                        System.out.println("Has elegido dividir");
-                        // Solo se permite si no es entre 0 y la división es exacta
+                        simboloOperacion = "/";
+                        nombreOperacion = "dividir";
+
                         if (numeroElegido2 == 0 || numeroElegido1 % numeroElegido2 != 0) {
-                            System.out.println("Lo sentimos, esta división no es válida. ¡Elige otra operación! :)");
+                            System.out.println(ROJO + "División no válida. Elige otra operación." + RESET);
                             interruptor = false;
                         } else {
                             resultado = numeroElegido1 / numeroElegido2;
                         }
                         break;
+
                     default:
-                        System.out.println("Vaya, no has elegido la opción correcta");
+                        System.out.println(ROJO + "Opción incorrecta. Inténtalo de nuevo." + RESET);
                         interruptor = false;
+
                 }
+
             } while (!interruptor);
 
-            System.out.println("El resultado es: " + resultado);
-            numeroElegido1 = resultado;
-            System.out.println("Es tu intento número: " + (i + 1));
+            System.out.println(colorJugador + "Has elegido " + nombreOperacion + RESET);
 
-            if (resultado == numeroObjetivo) {
-                System.out.println("¡" + obtenerNombre(jugador) + ", has llegado al número objetivo!");
-                break;
-            }
+            System.out.println();
+            System.out.println(CIAN + "--------------------------------------------------" + RESET);
+            System.out.println(colorJugador + "                   RESULTADO" + RESET);
+            System.out.println(CIAN + "--------------------------------------------------" + RESET);
+
+            System.out.println("              " + numeroElegido1 + " " + simboloOperacion
+                    + " " + numeroElegido2 + " = " + resultado);
+
+            int diferencia = Math.abs(numeroObjetivo - resultado);
+
+            // * Volvemos a mostrar los números disponibles *
+
+            System.out.println();
+            System.out.println(AMARILLO + "              NÚMEROS AUXILIARES" + RESET);
 
             mostrarNumeros();
-            System.out.println("Tu número actual es: " + resultado);
+
+            numeroElegido1 = resultado;
+
+            if (resultado == numeroObjetivo) {
+
+                System.out.println();
+                System.out.println(VERDE + "¡Has conseguido el número objetivo!" + RESET);
+
+                break;
+
+            }
 
         }
-        System.out.println("Acabó tu turno");
-        System.out.println("Tu número conseguido ha sido: " + numeroElegido1);
+
+        System.out.println();
+        System.out.println(CIAN + "==================================================" + RESET);
+        System.out.println("                 FIN DEL TURNO");
+        System.out.println(CIAN + "==================================================" + RESET);
+
+        System.out.println(colorJugador + "Resultado conseguido: " + numeroElegido1);
 
         return resultado;
+
     }
 
-    // Pide un número hasta que sea uno de los seis disponibles
+    // * Pide un número hasta que sea uno de los seis disponibles *
+
     public static int pedirNumeroDisponible(String mensaje) {
+
         int numero = leerNumero(mensaje);
+
         while (!estaDisponible(numero)) {
-            numero = leerNumero("No has elegido un número disponible: ");
+
+            numero = leerNumero(ROJO + "No has elegido un número disponible: " + RESET);
+
         }
+
         return numero;
+
     }
 
-    // LÓGICA: true si el número es uno de los seis generados
+    // * LÓGICA: true si el número es uno de los seis generados *
+
     public static boolean estaDisponible(int n) {
+
         return n == numeroAleatorio1 || n == numeroAleatorio2 || n == numeroAleatorio3
                 || n == numeroAleatorio4 || n == numeroAleatorio5 || n == numeroAleatorio6;
+
     }
 
     public static void mostrarNumeros() {
-        System.out.println("Número objetivo: " + numeroObjetivo);
-        System.out.println("Números disponibles: " + numeroAleatorio1 + " - " + numeroAleatorio2 + " - "
-                + numeroAleatorio3 + " - " + numeroAleatorio4 + " - " + numeroAleatorio5 + " - "
 
-                + numeroAleatorio6);
+        System.out.println();
+
+        System.out.println(CIAN + "              NÚMERO OBJETIVO" + RESET);
+        System.out.println(CIAN + "                     " + numeroObjetivo + RESET);
+
+        System.out.println();
+
+        System.out.println(AMARILLO + "             NÚMEROS DISPONIBLES" + RESET);
+
+        System.out.println(AMARILLO + "             " + numeroAleatorio1 + " - "
+                + numeroAleatorio2 + " - "
+                + numeroAleatorio3 + " - "
+                + numeroAleatorio4 + " - "
+                + numeroAleatorio5 + " - "
+                + numeroAleatorio6 + RESET);
+
+        System.out.println();
+
     }
 
-    // false si es una división entre 0 o no exacta; true en cualquier otro caso
+    // * false si es una división entre 0 o no exacta; true en cualquier otro caso *
+
     static boolean esOperacionValida(int a, int b, int operacion) {
+
         if (operacion == 4) {
+
             return b != 0 && a % b == 0;
+
         }
+
         return true;
 
     }
@@ -389,24 +566,40 @@ public class App {
 
     public static int laPalabraMasLarga() {
 
-        titulo("LA PALABRA MÁS LARGA", CIAN);
-        System.out.println("\n===== LA PALABRA MÁS LARGA =====");
+        titulo("LA PALABRA MÁS LARGA", 2);
 
         letras = generarLetras();
 
-        System.out.println("Letras sorteadas: " + letras);
-        System.out.println("¿Quieres repetir el sorteo? [s/n]");
+        System.out.print(CIAN + "Letras sorteadas: " + RESET);
+        for (int i = 0; i < letras.length(); i++) {
+            System.out.print(letras.charAt(i));
+
+            if (i < letras.length() - 1) {
+                System.out.print(" - ");
+            }
+        }
+        System.out.println();
+        System.out.println(MAGENTA + "¿Quieres repetir el sorteo? [s/n]" + RESET);
 
         String respuesta = teclado.nextLine().trim().toLowerCase();
 
         while (!respuesta.equals("s") && !respuesta.equals("n")) {
-            System.out.println("Responde solo s o n:");
+            System.out.println(ROJO + "Responde solo s o n:" + RESET);
             respuesta = teclado.nextLine().trim().toLowerCase();
         }
 
         if (respuesta.equals("s")) {
             letras = generarLetras();
-            System.out.println("Nuevo sorteo: " + letras);
+
+            System.out.print(CIAN + "Nuevo sorteo: " + RESET);
+            for (int i = 0; i < letras.length(); i++) {
+                System.out.print(AMARILLO + letras.charAt(i) + RESET);
+
+                if (i < letras.length() - 1) {
+                    System.out.print(" - ");
+                }
+            }
+            System.out.println();
         }
 
         String palabra1 = pedirPalabra(1);
@@ -426,36 +619,43 @@ public class App {
         }
 
         System.out.println();
-        System.out.println("===== RESULTADOS =====");
-        System.out.println("Letras: " + letras);
-        System.out.println(nombreJugador1 + ": " + palabra1 + " (" + longitud1 + " letras)");
-        System.out.println(nombreJugador2 + ": " + palabra2 + " (" + longitud2 + " letras)");
+        System.out.println(MAGENTA + "===== RESULTADOS =====" + RESET);
+        System.out.println(AMARILLO + nombreJugador1 + ": " + palabra1 + " (" + longitud1 + " letras)" + RESET);
+        System.out.println(VERDE + nombreJugador2 + ": " + palabra2 + " (" + longitud2 + " letras)" + RESET);
 
         return decidirGanadorLetras(longitud1, longitud2);
     }
 
     static String pedirPalabra(int jugador) {
         System.out.println();
-        System.out.println("Turno de " + obtenerNombre(jugador));
-        System.out.println("Letras disponibles: " + letras);
-        System.out.println("Escribe tu palabra:");
+        System.out.println(CIAN + "Turno de " + RESET + obtenerNombre(jugador));
+        System.out.print("Letras disponibles: ");
+        for (int i = 0; i < letras.length(); i++) {
+            System.out.print(AMARILLO + letras.charAt(i) + RESET);
+
+            if (i < letras.length() - 1) {
+                System.out.print(" - ");
+            }
+        }
+        System.out.println();
+        System.out.println(CIAN + "Escribe tu palabra:" + RESET);
         String palabra = teclado.nextLine().trim().toLowerCase();
 
         while (palabra.length() == 0 || !sePuedeFormar(palabra, letras)) {
-            System.out.println("Esa palabra no se puede formar con las letras. Prueba otra:");
+            System.out.println(ROJO + "Esa palabra no se puede formar con las letras. Prueba otra:" + RESET);
             palabra = teclado.nextLine().trim().toLowerCase();
         }
         return palabra;
     }
 
     static boolean confirmarExistencia(String palabra, int jugadorRival) {
-        System.out.println(obtenerNombre(jugadorRival) + ", comprueba en un diccionario si existe \""
-                + palabra + "\".");
-        System.out.println("¿Existe? [s/n]:");
+        System.out.println(CIAN + obtenerNombre(jugadorRival) + ", comprueba en un diccionario si existe \""
+                + palabra + "\"." + RESET);
+        System.out.println(MAGENTA + "¿Existe? [s/n]:" + RESET);
         String respuesta = teclado.nextLine().trim().toLowerCase();
 
         while (!respuesta.equals("s") && !respuesta.equals("n")) {
-            System.out.println("Responde solo s o n:");
+            System.out.println(ROJO + "Responde solo s o n:" + RESET);
             respuesta = teclado.nextLine().trim().toLowerCase();
         }
         return respuesta.equals("s");
@@ -537,17 +737,18 @@ public class App {
 
     static int calculadoraHumana(int cantidad) {
 
-        titulo("LA CALCULADORA HUMANA", CIAN);
-        System.out.println("\n===== LA CALCULADORA HUMANA =====");
-        System.out.println("Pon a prueba tu calculo mental por rondas.");
-        System.out.println("Resuelve operaciones en cadena comenzando con un numero inicial.");
-        System.out.println("Gana el menor tiempo. Cada fallo suma 20 segundos de penalizacion.");
+        titulo("LA CALCULADORA HUMANA", 3);
+        System.out.println("Pon a prueba tu cálculo mental por rondas.");
+        System.out.println("Resuelve operaciones en cadena comenzando con un número inicial.");
+        System.out.println("Gana el menor tiempo. Cada fallo suma 20 segundos de penalización.");
 
-        double tiempo1 = turnoCalculadora(nombreJugador1, cantidad);
-        double tiempo2 = turnoCalculadora(nombreJugador2, cantidad);
+        double tiempo1 = turnoCalculadora(nombreJugador1, cantidad, 1);
+        double tiempo2 = turnoCalculadora(nombreJugador2, cantidad, 2);
 
-        System.out.println("\nTiempo final de " + nombreJugador1 + ": " + tiempo1 + " segundos");
-        System.out.println("Tiempo final de " + nombreJugador2 + ": " + tiempo2 + " segundos");
+        System.out.println("\nTiempo final de " + AMARILLO + nombreJugador1 + RESET
+                + ": " + tiempo1 + " segundos");
+        System.out.println("Tiempo final de " + VERDE + nombreJugador2 + RESET
+                + ": " + tiempo2 + " segundos");
 
         // Gana quien tarda menos
 
@@ -560,96 +761,111 @@ public class App {
         }
     }
 
-    static double turnoCalculadora(String jugador, int cantidad) {
+    static double turnoCalculadora(String jugador, int cantidad, int numeroJugador) {
 
-        System.out.println("\nTurno de " + jugador);
-        System.out.println("Pulsa INTRO para empezar.");
-        teclado.nextLine();
+    String colorJugador;
 
-        int numero = random.nextInt(100) + 1;
-        int errores = 0;
+    if (numeroJugador == 1) {
+        colorJugador = AMARILLO;
+    } else {
+        colorJugador = VERDE;
+    }
 
-        long inicio = System.currentTimeMillis();
+    System.out.println("\n" + CIAN + "Turno de " + colorJugador + jugador + RESET);
+    System.out.println(MAGENTA + "Pulsa INTRO para empezar." + RESET);
+    teclado.nextLine();
 
-        for (int i = 1; i <= cantidad; i++) {
+    int numero = random.nextInt(100) + 1;
+    int errores = 0;
 
-            int operacion = random.nextInt(4) + 1;
-            int valor;
-            int resultado;
+    long inicio = System.currentTimeMillis();
 
-            if (operacion == 1 || operacion == 2) {
-                valor = random.nextInt(90) + 10; // suma y resta: dos cifras
-            } else {
-                valor = random.nextInt(9) + 1; // multiplicación y división: una cifra
-            }
+    for (int i = 1; i <= cantidad; i++) {
 
-            // Buscamos un divisor para que la division sea exacta.
-            if (operacion == 4) {
-                while (numero % valor != 0) {
-                    valor = random.nextInt(9) + 1;
-                }
-            }
+        int operacion = random.nextInt(4) + 1;
+        int valor;
+        int resultado;
 
-            if (operacion == 1) {
-                resultado = numero + valor;
-                System.out.println(numero + " + " + valor);
-            } else if (operacion == 2) {
-                resultado = numero - valor;
-                System.out.println(numero + " - " + valor);
-            } else if (operacion == 3) {
-                resultado = numero * valor;
-                System.out.println(numero + " * " + valor);
-            } else {
-                resultado = numero / valor;
-                System.out.println(numero + " / " + valor);
-            }
-
-            int respuesta = leerNumero("Resultado: ");
-
-            if (respuesta == resultado) {
-                System.out.println("Correcto.");
-            } else {
-                System.out.println("Incorrecto. El resultado era " + resultado);
-                errores++;
-            }
-
-            // El resultado correcto es el número inicial de la siguiente operación
-            numero = resultado;
-
+        if (operacion == 1 || operacion == 2) {
+            valor = random.nextInt(90) + 10;
+        } else {
+            valor = random.nextInt(9) + 1;
         }
 
-        long fin = System.currentTimeMillis();
+        //* Buscamos un divisor para que la división sea exacta *
 
-        double segundos = (fin - inicio) / 1000.0;
-        double tiempoFinal = segundos + errores * 20;
+        if (operacion == 4) {
+            while (numero % valor != 0) {
+                valor = random.nextInt(9) + 1;
+            }
+        }
 
-        System.out.println("Errores: " + errores);
-        System.out.println("Tiempo real: " + segundos);
-        System.out.println("Penalizacion: " + errores * 20 + " segundos");
+        if (operacion == 1) {
+            resultado = numero + valor;
+            System.out.println(numero + " + " + valor);
+        } else if (operacion == 2) {
+            resultado = numero - valor;
+            System.out.println(numero + " - " + valor);
+        } else if (operacion == 3) {
+            resultado = numero * valor;
+            System.out.println(numero + " * " + valor);
+        } else {
+            resultado = numero / valor;
+            System.out.println(numero + " / " + valor);
+        }
 
-        return tiempoFinal;
+        int respuesta = leerNumero("Resultado: ");
+
+        if (respuesta == resultado) {
+            System.out.println(VERDE + "Correcto." + RESET);
+        } else {
+            System.out.println(ROJO + "Incorrecto. El resultado era " + resultado + RESET);
+            errores++;
+        }
+
+        //* El resultado correcto es el número inicial de la siguiente operación *
+
+        numero = resultado;
     }
+
+    long fin = System.currentTimeMillis();
+
+    double segundos = (fin - inicio) / 1000.0;
+    double tiempoFinal = segundos + errores * 20;
+
+    System.out.println();
+    System.out.println(CIAN + "--------------------------------------------------" + RESET);
+    System.out.println(colorJugador + "                  RESUMEN DEL TURNO" + RESET);
+    System.out.println(CIAN + "--------------------------------------------------" + RESET);
+
+    System.out.println(ROJO + "Errores: " + errores + RESET);
+    System.out.println("Tiempo real: " + segundos + " segundos");
+    System.out.println("Penalización: " + errores * 20 + " segundos");
+
+    return tiempoFinal;
+}
 
     // ==========================================
     // 10. PRUEBA 4: LA SECUENCIA MISTERIOSA
-    // ==========================================
+    // =========================================
 
     static int secuenciaMisteriosa() {
 
-        // Reiniciamos los puntos de esta prueba.
+        // * Reiniciamos los puntos de esta prueba *
+
         puntosPrueba1 = 0;
         puntosPrueba2 = 0;
 
-        titulo("LA SECUENCIA MISTERIOSA", CIAN);
-        System.out.println("\n===== LA SECUENCIA MISTERIOSA =====");
-        System.out.println("Descubre el numero que continua.");
-        System.out.println("La regla sera sumar o multiplicar.");
+        titulo("LA SECUENCIA MISTERIOSA", 4);
+
+        System.out.println(MAGENTA + "Descubre el número que continúa." + RESET);
+        System.out.println("La regla será sumar o multiplicar.");
         System.out.println("Cada acierto vale 1 punto.");
-        System.out.println("La prueba tiene 10 rondas.");
+        System.out.println(MAGENTA + "La prueba tiene 10 rondas." + RESET);
 
         for (int ronda = 1; ronda <= 10; ronda++) {
 
-            System.out.println(" --- Ronda " + ronda + " ---");
+            System.out.println(CIAN + " --- Ronda " + ronda + " ---" + RESET);
 
             int tipoOperacion = random.nextInt(2);
 
@@ -661,7 +877,8 @@ public class App {
 
             if (tipoOperacion == 0) {
 
-                // Secuencia de sumas.
+                // * Secuencia de sumas *
+
                 numero1 = random.nextInt(50) + 20;
                 cantidad = random.nextInt(25) + 10;
 
@@ -680,36 +897,39 @@ public class App {
                 respuestaCorrecta = numero3 * cantidad;
             }
 
-            System.out.println("Secuencia: " + numero1 + " - " + numero2 + " - " + numero3 + " - ?");
+            System.out.println(CIAN + "Secuencia: " + RESET + AMARILLO
+                    + numero1 + " - " + numero2 + " - " + numero3 + " - ?" + RESET);
 
             // Turno del primer jugador.
 
-            System.out.println("Turno de " + nombreJugador1);
-            int respuesta1 = leerNumero("Numero siguiente: ");
+            System.out.println(CIAN + "Turno de " + AMARILLO + nombreJugador1 + RESET);
+            int respuesta1 = leerNumero("Número siguiente: ");
 
             if (respuesta1 == respuestaCorrecta) {
-                System.out.println("Correcto. Ganas 1 punto.");
+                System.out.println(VERDE + "Correcto. Ganas 1 punto." + RESET);
                 puntosPrueba1++;
             } else {
-                System.out.println("Incorrecto. No ganas puntos.");
+                System.out.println(ROJO + "Incorrecto. No ganas puntos." + RESET);
             }
 
-            // Turno del segundo jugador.
-            System.out.println("\nTurno de " + nombreJugador2);
-            int respuesta2 = leerNumero("Numero siguiente: ");
+            // * Turno del segundo jugador *
+
+            System.out.println("\n" + CIAN + "Turno de " + VERDE + nombreJugador2 + RESET);
+            int respuesta2 = leerNumero("Número siguiente: ");
 
             if (respuesta2 == respuestaCorrecta) {
-                System.out.println("Correcto. Ganas 1 punto.");
+                System.out.println(VERDE + "Correcto. Ganas 1 punto." + RESET);
                 puntosPrueba2++;
             } else {
-                System.out.println("Incorrecto. No ganas puntos.");
+                System.out.println(ROJO + "Incorrecto. No ganas puntos." + RESET);
             }
 
-            // Se revela la solucion despues de ambos turnos.
-            System.out.println("La respuesta correcta era: " + respuestaCorrecta);
+            // Se revela la solución después de ambos turnos
 
-            System.out.println(nombreJugador1 + ": " + puntosPrueba1 + " puntos");
-            System.out.println(nombreJugador2 + ": " + puntosPrueba2 + " puntos");
+            System.out.println(CIAN + "La respuesta correcta era: " + respuestaCorrecta + RESET);
+
+            System.out.println(AMARILLO + nombreJugador1 + ": " + puntosPrueba1 + " puntos" + RESET);
+            System.out.println(VERDE + nombreJugador2 + ": " + puntosPrueba2 + " puntos" + RESET);
         }
 
         // Decidimos quién ha ganado.
@@ -741,17 +961,17 @@ public class App {
                 return numero;
             } else {
 
-                System.out.println("Debes introducir un numero.");
+                System.out.println(ROJO + "Debes introducir un numero." + RESET);
                 teclado.nextLine();
+            }
         }
     }
-}
 
     // Pide un número entero entre un mínimo y un máximo
     static int leerNumeroEntre(String mensaje, int minimo, int maximo) {
         int numero = leerNumero(mensaje);
         while (numero < minimo || numero > maximo) {
-            System.out.println("El número debe estar entre " + minimo + " y " + maximo + ".");
+            System.out.println(ROJO + "El número debe estar entre " + minimo + " y " + maximo + "." + RESET);
             numero = leerNumero(mensaje);
         }
         return numero;
