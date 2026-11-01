@@ -58,7 +58,7 @@ public class App {
                 "¡¡¡Empezamos!!!");
         pedirNombres();
 
-        System.out.println("\n¿Qué modalidad quieres jugar?");
+        System.out.println(MAGENTA + "\n ¿Qué modalidad quieres jugar?" + RESET);
         System.out.println("1. Modo concurso");
         System.out.println("2. Modo rápido");
 
@@ -73,7 +73,7 @@ public class App {
     }
 
     // ==========================================
-    // 2. MODOS DE JUEGO
+    // 3. MODOS DE JUEGO
     // ==========================================
     public static void modoConcurso() {
         System.out.println("\n===== HAS ELEGIDO EL MODO CONCURSO =====");
@@ -170,16 +170,35 @@ public class App {
     }
 
     public static void titulo(String texto, String color) {
-        System.out.println();
-        System.out.print(color + "+");
-        linea("-", 38);
-        System.out.println("+");
-        System.out.println("| " + String.format("%-36s", texto) + " |");
-        System.out.print("+");
-        linea("-", 38);
-        System.out.println("+" + RESET);
 
-    }
+    int ancho = 48;
+
+    System.out.println();
+
+    // Línea superior
+    System.out.println(color + "=".repeat(ancho) + RESET);
+
+    // Nombre del concurso
+    System.out.printf(color + "%" + ((ancho + 15) / 2)
+            + "s%n" + RESET, "CIFRAS Y LETRAS");
+
+    // Separador
+    System.out.println(color + "-".repeat(ancho) + RESET);
+
+    System.out.println();
+
+    // Nombre de la prueba
+    System.out.printf(color + "%" + ((ancho + texto.length()) / 2)
+            + "s%n" + RESET, texto);
+
+    System.out.println();
+
+    // Línea inferior
+    System.out.println(color + "=".repeat(ancho) + RESET);
+
+    System.out.println();
+}
+
 
     // ==========================================
     // 6. GESTIÓN DE JUGADORES
@@ -203,15 +222,15 @@ public class App {
 
     public static String obtenerNombre(int jugador) {
         if (jugador == 1) {
-            return nombreJugador1;
+            return AMARILLO +  nombreJugador1 + RESET;
         } else {
-            return nombreJugador2;
+            return VERDE + nombreJugador2 + RESET;
         }
 
     }
 
     // ==========================================
-    // 7.1 PRUEBA 1 : LA CIFRA EXACTA
+    // 7. PRUEBA 1 : LA CIFRA EXACTA
     // ==========================================
 
     public static int laCifraExacta() {
@@ -220,10 +239,10 @@ public class App {
         System.out
                 .println("En el primer juego, el programa generará un número de tres cifras y seis números auxiliares");
         System.out.println(
-                "Tendréis que acercaros lo máximo posible al número objetivo mediante operaciones aritméticas");
-        System.out.println("Tendréis 5 oportunidades por jugador");
-        System.out.println("El ganador será el que haya conseguido el resultado más cercano");
-        System.out.println("Si ambos obtenéis la misma diferencia, se producirá un empate");
+                "Tendréis que acercaros lo máximo posible al número objetivo mediante operaciones aritméticas.");
+        System.out.println("Tendréis 5 oportunidades por jugador.");
+        System.out.println("El ganador será el que haya conseguido el resultado más cercano.");
+        System.out.println("Si ambos obtenéis la misma diferencia, se producirá un empate.");
         System.out.println("Es tu turno, jugador número 1. ¡Mucha suerte!");
 
         numeroObjetivo = random.nextInt(900) + 100;
@@ -365,11 +384,12 @@ public class App {
     }
 
     // ==========================================
-    // 8.1 LA PALABRA MÁS LARGA
+    // 8. LA PALABRA MÁS LARGA
     // ==========================================
 
     public static int laPalabraMasLarga() {
 
+        titulo("LA PALABRA MÁS LARGA", CIAN);
         System.out.println("\n===== LA PALABRA MÁS LARGA =====");
 
         letras = generarLetras();
@@ -512,11 +532,12 @@ public class App {
     }
 
     // ==========================================
-    // 9.3 PRUEBA 3: LA CALCULADORA HUMANA
+    // 9. PRUEBA 3: LA CALCULADORA HUMANA
     // ==========================================
 
     static int calculadoraHumana(int cantidad) {
 
+        titulo("LA CALCULADORA HUMANA", CIAN);
         System.out.println("\n===== LA CALCULADORA HUMANA =====");
         System.out.println("Pon a prueba tu calculo mental por rondas.");
         System.out.println("Resuelve operaciones en cadena comenzando con un numero inicial.");
@@ -610,7 +631,7 @@ public class App {
     }
 
     // ==========================================
-    // 10.3. PRUEBA 4: LA SECUENCIA MISTERIOSA
+    // 10. PRUEBA 4: LA SECUENCIA MISTERIOSA
     // ==========================================
 
     static int secuenciaMisteriosa() {
@@ -619,6 +640,7 @@ public class App {
         puntosPrueba1 = 0;
         puntosPrueba2 = 0;
 
+        titulo("LA SECUENCIA MISTERIOSA", CIAN);
         System.out.println("\n===== LA SECUENCIA MISTERIOSA =====");
         System.out.println("Descubre el numero que continua.");
         System.out.println("La regla sera sumar o multiplicar.");
@@ -702,7 +724,7 @@ public class App {
     }
 
     // ==================================================
-    // 11. MÉTODOS AUXILIARES: LECTURA DE DATOS
+    // 11.MÉTODOS AUXILIARES: LECTURA DE DATOS
     // ==================================================
 
     // Pide un número entero y repite hasta que se escriba uno válido
